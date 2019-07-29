@@ -1,26 +1,71 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+
+import SpaceXCompanyInfo from './SpaceXCompanyInfo/SpaceXCompanyInfo'
+import PastLaunches from './PastLaunches'
+import UpcomingLaunches from './UpcomingLaunches'
+import RocketsInfo from './RocketsInfo'
+import LaunchPadsInfo from './LaunchPadsInfo'
+
+import './App.css'
+
+const Links = () => (
+  <nav>
+    <NavLink exact activeClassName="active" to="/">
+      Info
+    </NavLink>
+    <NavLink activeClassName="active" to="/past">
+      Past Launches
+    </NavLink>
+    <NavLink activeClassName="active" to="/upcoming">
+      Upcoming Launches
+    </NavLink>
+    <NavLink activeClassName="active" to="/rocket">
+      Rocket Info
+    </NavLink>
+    <NavLink activeClassName="active" to="/launchpad">
+      Launchpad Info
+    </NavLink>
+  </nav>
+);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className="App">
+      <Router>
+        <header>
+          <h1>SpaceX Info Browser</h1>
+          <hr />
+              <div>
+                  <Links />
+              </div>
+
+        </header>
+        <div className="main-content">
+          <Route 
+            exact path="/"
+            render={() => <SpaceXCompanyInfo />}
+          />
+          <Route 
+            exact path="/past"
+            render={() => <PastLaunches />}
+          />
+          <Route
+            exact path="/upcoming"
+            render={() => <UpcomingLaunches />}
+          />
+          <Route
+            exact path="/rocket"
+            render={() => <RocketsInfo />}
+          />
+          <Route
+            exact path="/launchpad"
+            render={() => <LaunchPadsInfo />}
+          />
+        </div>
+      </Router>
+		</div>
+	)
 }
 
-export default App;
+export default App
