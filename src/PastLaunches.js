@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { SpaceXApiUrls } from './actions'
-import { launchesFetchData } from './actions/launches'
+import { 
+  pastLaunchesFetchData,
+  setSelectedLaunch 
+} from './actions/pastLaunches'
 import { LaunchList } from './LaunchList'
 import { LaunchDetails } from './LaunchDetails'
 
-function PastLaunches({ launches, fetchLaunchData }) {
-  const [launchNumber, setLaunchNumber] = useState(0);
+function PastLaunches({ launches, fetchLaunchData, launchNumber, setSelectedLaunch }) {
 
 	useEffect(() => {
 		async function fetchData() {
@@ -18,8 +20,9 @@ function PastLaunches({ launches, fetchLaunchData }) {
     fetchData()    
 	}, [fetchLaunchData])
 
-	function selectedLaunch(e) {
-    setLaunchNumber(e.target.id)
+	function setSelectedLaunchId(e) {
+    // setLaunchNumber(e.target.id)
+    setSelectedLaunch(e.target.id)
 	}
 
 	return (
@@ -34,7 +37,7 @@ function PastLaunches({ launches, fetchLaunchData }) {
 						<LaunchList
               launches={launches}
               launchNumber={launchNumber}
-              handleOnclick={selectedLaunch}
+              handleOnclick={setSelectedLaunchId}
             />
 					</div>
 				</section>
@@ -56,15 +59,17 @@ function PastLaunches({ launches, fetchLaunchData }) {
 
 const mapStateToProps = state => {
 	return {
-		launches: state.launches.data,
-		hasErrored: state.launchesHasErrored,
-		isLoading: state.launchesIsLoading
+		launches: state.pastLaunches.data,
+		hasErrored: state.pastLaunches.launchesHasErrored,
+    isLoading: state.pastLaunches.launchesIsLoading,
+    launchNumber: state.pastLaunches.selectedLaunch
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		fetchLaunchData: url => dispatch(launchesFetchData(url))
+    fetchLaunchData: url => dispatch(pastLaunchesFetchData(url)),
+    setSelectedLaunch: flightNumber => dispatch(setSelectedLaunch(flightNumber))
 	}
 }
 

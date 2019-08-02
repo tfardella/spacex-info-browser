@@ -69,7 +69,6 @@ function LaunchPadsInfo({ launchPads, fetchLaunchPadsData, setSelectedLaunchPad,
 
 	function updateSelectedLaunchPad(e) {
     setSelectedLaunchPad(e.target.id)
-    console.log(`launchpad clicked: ${selectedLaunchPad}`)
   }
   
 

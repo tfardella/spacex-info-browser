@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux'
 import { info } from './info'
-import { launches } from './launches'
+import { pastLaunches } from './pastLaunches'
+import { upcomingLaunches } from './upcomingLaunches'
 import { rockets } from './rockets'
 import { launchPads } from './launchPads'
 
 export default combineReducers({
   info,
-  launches,
+  pastLaunches,
+  upcomingLaunches,
   rockets,
   launchPads
 })

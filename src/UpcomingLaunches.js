@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { SpaceXApiUrls } from './actions'
-import { launchesFetchData } from './actions/launches'
+import {
+  upcomingLaunchesFetchData,
+  upcomingLaunchesSetSelected
+} from './actions/upcomingLaunches'
 import { LaunchList } from './LaunchList'
 import { LaunchDetails } from './LaunchDetails'
 
-function UpcomingLaunches({ launches, fetchLaunchData }) {
-  const [launchNumber, setLaunchNumber] = useState(0);
-
+function UpcomingLaunches({ launches, fetchLaunchData, selectedLaunch, upcomingLaunchesSetSelected }) {
 	useEffect(() => {
 		async function fetchData() {
 			const result = await fetchLaunchData(SpaceXApiUrls.LAUNCHES_UPCOMING)
@@ -18,8 +19,8 @@ function UpcomingLaunches({ launches, fetchLaunchData }) {
 		fetchData()
 	}, [fetchLaunchData])
 
-	function selectedLaunch(e) {
-    setLaunchNumber(e.target.id)
+	function setSelectedLaunch(e) {
+    upcomingLaunchesSetSelected(e.target.id)
 	}
 
 	return (
@@ -33,8 +34,8 @@ function UpcomingLaunches({ launches, fetchLaunchData }) {
 					<div className="launches-list">
 						<LaunchList
               launches={launches}
-              launchNumber={launchNumber}
-              handleOnclick={selectedLaunch}
+              launchNumber={selectedLaunch}
+              handleOnclick={setSelectedLaunch}
             />
 					</div>
 				</section>
@@ -44,7 +45,7 @@ function UpcomingLaunches({ launches, fetchLaunchData }) {
 					<h3>Launch Details</h3>
           <div>
             <LaunchDetails
-              launchNumber={launchNumber}
+              launchNumber={selectedLaunch}
               launches={launches}
             />
           </div>
@@ -56,15 +57,17 @@ function UpcomingLaunches({ launches, fetchLaunchData }) {
 
 const mapStateToProps = state => {
 	return {
-		launches: state.launches.data,
-		hasErrored: state.launchesHasErrored,
-		isLoading: state.launchesIsLoading
+		launches: state.upcomingLaunches.data,
+		hasErrored: state.upcomingLaunches.launchesHasErrored,
+    isLoading: state.upcomingLaunches.launchesIsLoading,
+    selectedLaunch: state.upcomingLaunches.selectedLaunch
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		fetchLaunchData: url => dispatch(launchesFetchData(url))
+    fetchLaunchData: url => dispatch(upcomingLaunchesFetchData(url)),
+    upcomingLaunchesSetSelected: id => dispatch(upcomingLaunchesSetSelected(id))
 	}
 }
 

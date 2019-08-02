@@ -19,7 +19,7 @@ export function LaunchDetails({launches, launchNumber}){
           </div>
           <div>
             <label>Date:</label>
-            <span>{Date(details.launch_date_unix)}</span>
+            <span>{details.launch_date_local}</span>
           </div>
           <div>
             <label>Rocket:</label>
