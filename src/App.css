@@ -6,6 +6,15 @@
   margin: 10px 4px;
 }
 
+.App *:focus {
+  outline: 2px solid #ffbe68;
+}
+
+.App label {
+  font-weight: bold;
+  padding: 2px 4px 2px 0;
+}
+
 .App .main-content::after {
   content: "";
   background-image: url('./assets/falconheavy1.jpg');
@@ -116,22 +125,11 @@
 
 .App section {
   background-color: rgb(255, 255, 255, 0.5);
-  margin-right: 10px;
   padding: 10px;
   border-radius: 4px;
   text-align: left;
-}
-
-/* .App .launch-details {
-} */
-
-.App .launch-details div {
-  margin: 8px 0;
-}
-
-.App .launch-details label {
-  font-weight: bold;
-  padding: 2px 4px 2px 0;
+  line-height: 1.6em;
+  margin: 0 10px;
 }
 
 .App .launch-details .mission-patch {

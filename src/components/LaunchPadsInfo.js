@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { SpaceXApiUrls } from './actions'
-import { launchPadsFetchData, setSelectedLaunchPadId } from './actions/launchPads'
+import { SpaceXApiUrls } from '../actions'
+import { launchPadsFetchData, setSelectedLaunchPadId } from '../actions/launchPads'
 
 function LaunchPadsList({launchPads, selectedLaunchPad, handleOnclick}) {
 	if (launchPads) {
@@ -47,6 +47,10 @@ function LaunchPadDetails({launchPads, launchPadId}){
           <div>
             <label>Status:</label>
             <span>{details.status}</span>
+          </div>
+          <div>
+            <label>Description:</label>
+            <span>{details.details}</span>
           </div>
         </div>
       )

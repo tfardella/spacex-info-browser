@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { SpaceXApiUrls } from './actions'
-import { rocketsFetchData, rocketsSetSelected } from './actions/rockets'
+import { SpaceXApiUrls } from '../actions'
+import { rocketsFetchData, rocketsSetSelected } from '../actions/rockets'
 
 function RocketList({ rockets, selectedRocketId, handleOnclick }) {
 	if (rockets) {
@@ -66,6 +66,10 @@ function RocketDetails({rockets, rocketId}){
           <div>
             <label>Engine Version:</label>
             <span>{details.engines.version}</span>
+          </div>
+          <div>
+            <label>Description:</label>
+            <span>{details.description}</span>
           </div>
         </div>
       )

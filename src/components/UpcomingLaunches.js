@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { SpaceXApiUrls } from './actions'
+import { SpaceXApiUrls } from '../actions'
 import {
   upcomingLaunchesFetchData,
   upcomingLaunchesSetSelected
-} from './actions/upcomingLaunches'
+} from '../actions/upcomingLaunches'
 import { LaunchList } from './LaunchList'
 import { LaunchDetails } from './LaunchDetails'
 
@@ -19,8 +19,8 @@ function UpcomingLaunches({ launches, fetchLaunchData, selectedLaunch, upcomingL
 		fetchData()
 	}, [fetchLaunchData])
 
-	function setSelectedLaunch(e) {
-    upcomingLaunchesSetSelected(e.target.id)
+	function setSelectedLaunch(id) {
+    upcomingLaunchesSetSelected(id)
 	}
 
 	return (
@@ -35,7 +35,7 @@ function UpcomingLaunches({ launches, fetchLaunchData, selectedLaunch, upcomingL
 						<LaunchList
               launches={launches}
               launchNumber={selectedLaunch}
-              handleOnclick={setSelectedLaunch}
+              onClickHandler={setSelectedLaunch}
             />
 					</div>
 				</section>

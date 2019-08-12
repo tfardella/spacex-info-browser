@@ -1,16 +1,16 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
-import SpaceXCompanyInfo from './SpaceXCompanyInfo/SpaceXCompanyInfo'
-import PastLaunches from './PastLaunches'
-import UpcomingLaunches from './UpcomingLaunches'
-import RocketsInfo from './RocketsInfo'
-import LaunchPadsInfo from './LaunchPadsInfo'
+import SpaceXCompanyInfo from './components/SpaceXCompanyInfo'
+import PastLaunches from './components/PastLaunches'
+import UpcomingLaunches from './components/UpcomingLaunches'
+import RocketsInfo from './components/RocketsInfo'
+import LaunchPadsInfo from './components/LaunchPadsInfo'
 
 import './App.css'
 
 const Links = () => (
-  <nav>
+  <nav className='main-nav'>
     <NavLink exact activeClassName="active" to="/">
       Info
     </NavLink>
@@ -34,12 +34,13 @@ function App() {
 		<div className="App">
       <Router>
         <header>
-          <h1>SpaceX Info Browser</h1>
-          <hr />
-              <div>
-                  <Links />
-              </div>
-
+          <nav>
+            <h1>SpaceX Info Browser</h1>
+            <hr />
+            <div>
+              <Links />
+            </div>
+          </nav>
         </header>
         <div className="main-content">
           <Route 
