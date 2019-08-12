@@ -1,6 +1,9 @@
 # SpaceX Info Browser
 A little project for learning React/Redux.
 
+Uses the SpaceX-API: 
+https://github.com/r-spacex/SpaceX-API
+
 ---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
