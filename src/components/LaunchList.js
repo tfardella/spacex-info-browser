@@ -15,9 +15,9 @@ const keyCodes = {
 
 export function LaunchList({ launches, launchNumber, onClickHandler }) {
 	if (launches) {
-		const launchListdata = launches.map(launch => (
+		const launchListdata = launches.map((launch, index) => (
       <li
-        key={launch.flight_number}
+        key={index}
         id={launch.flight_number}
         className={parseInt(launchNumber, 10) === parseInt(launch.flight_number, 10) ? 'selected' : ''}
         tabIndex='0'
